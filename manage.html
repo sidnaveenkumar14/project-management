@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task Manager Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .task-card {
+      border-radius: 1rem;
+      transition: all 0.3s ease;
+    }
+    .task-card:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      transform: translateY(-3px);
+    }
+    .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #fff;
+      margin-left: -10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-4">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h4 class="fw-bold">My Tasks</h4>
+      <div class="d-flex align-items-center gap-3">
+        <nav class="nav nav-pills">
+          <a class="nav-link active" href="#">All <span class="badge bg-light text-dark ms-1">18</span></a>
+          <a class="nav-link" href="#">Pending <span class="badge bg-secondary">11</span></a>
+          <a class="nav-link" href="#">In Progress <span class="badge bg-info text-dark">5</span></a>
+          <a class="nav-link" href="#">Completed <span class="badge bg-success">2</span></a>
+        </nav>
+        <button class="btn btn-success">Download Report</button>
+      </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="row g-4">
+      <!-- 1. Design Homepage -->
+      <div class="col-md-4">
+        <div class="bg-white p-3 task-card border-start border-4 border-info shadow-sm text-primary">
+          <div class="d-flex justify-content-between mb-2">
+            <span class="badge bg-info text-dark">In Progress</span>
+            <span class="badge bg-danger">High Priority</span>
+          </div>
+          <h6 class="fw-bold">Design Homepage</h6>
+          <p class="text-muted small">Create a clean and modern homepage layout using Tailwind CSS...</p>
+          <p><strong>Task Done: 2 / 5</strong></p>
+          <div class="progress mb-3">
+            <div class="progress-bar bg-info" style="width: 40%"></div>
+          </div>
+          <div class="d-flex justify-content-between small text-muted">
+            <div>
+              <div>Start Date</div>
+              <div class="fw-semibold">16th Mar 2025</div>
+            </div>
+            <div>
+              <div>Due Date</div>
+              <div class="fw-semibold">31st Mar 2025</div>
+            </div>
+          </div>
+          <div class="d-flex mt-3 align-items-center">
+            <img src="https://i.pravatar.cc/30?img=1" class="avatar shadow-sm" />
+            <img src="https://i.pravatar.cc/30?img=2" class="avatar shadow-sm" />
+            <img src="https://i.pravatar.cc/30?img=3" class="avatar shadow-sm" />
+            <span class="ms-auto"><i class="bi bi-chat text-info"></i> 2</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Write Blog Post -->
+      <div class="col-md-4">
+        <div class="bg-light p-3 task-card border-start border-4 border-warning text-dark">
+          <div class="d-flex justify-content-between mb-2">
+            <span class="badge bg-info text-dark">In Progress</span>
+            <span class="badge bg-warning text-dark">Medium Priority</span>
+          </div>
+          <h6 class="fw-bold">Write Blog Post</h6>
+          <p class="text-muted small">Write an informative blog post about React performance optimization...</p>
+          <p><strong>Task Done: 2 / 5</strong></p>
+          <div class="progress mb-3">
+            <div class="progress-bar bg-info" style="width: 40%"></div>
+          </div>
+          <div class="d-flex justify-content-between small text-muted">
+            <div>
+              <div>Start Date</div>
+              <div class="fw-semibold">16th Mar 2025</div>
+            </div>
+            <div>
+              <div>Due Date</div>
+              <div class="fw-semibold">27th Mar 2025</div>
+            </div>
+          </div>
+          <div class="d-flex mt-3 align-items-center">
+            <img src="https://i.pravatar.cc/30?img=4" class="avatar shadow" />
+            <img src="https://i.pravatar.cc/30?img=5" class="avatar shadow" />
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. API Integration -->
+      <div class="col-md-4">
+        <div class="bg-white p-3 task-card border-start border-4 border-danger shadow-lg">
+          <div class="d-flex justify-content-between mb-2">
+            <span class="badge bg-secondary">Pending</span>
+            <span class="badge bg-danger">High Priority</span>
+          </div>
+          <h6 class="fw-bold text-danger">API Integration for Dashboard</h6>
+          <p class="text-muted small">Implement API integration for the user dashboard. Ensure data fetching is efficient...</p>
+          <p><strong>Task Done: 0 / 5</strong></p>
+          <div class="progress mb-3">
+            <div class="progress-bar bg-secondary" style="width: 0%"></div>
+          </div>
+          <div class="d-flex justify-content-between small text-muted">
+            <div>
+              <div>Start Date</div>
+              <div class="fw-semibold">16th Mar 2025</div>
+            </div>
+            <div>
+              <div>Due Date</div>
+              <div class="fw-semibold">5th Apr 2025</div>
+            </div>
+          </div>
+          <div class="d-flex mt-3 align-items-center">
+            <img src="https://i.pravatar.cc/30?img=6" class="avatar" />
+            <img src="https://i.pravatar.cc/30?img=7" class="avatar" />
+            <img src="https://i.pravatar.cc/30?img=8" class="avatar" />
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Product Catalog Update -->
+      <div class="col-md-4">
+        <div class="bg-white p-3 task-card border-start border-4 border-success text-success">
+          <div class="d-flex justify-content-between mb-2">
+            <span class="badge bg-secondary">Pending</span>
+            <span class="badge bg-success">Low Priority</span>
+          </div>
+          <h6 class="fw-bold">Product Catalog Update</h6>
+          <p class="text-muted small">Update the product catalog with new categories and revised listings...</p>
+          <p><strong>Task Done: 0 / 5</strong></p>
+          <div class="progress mb-3">
+            <div class="progress-bar bg-secondary" style="width: 0%"></div>
+          </div>
+          <div class="d-flex justify-content-between small text-muted">
+            <div>
+              <div>Start Date</div>
+              <div class="fw-semibold">16th Mar 2025</div>
+            </div>
+            <div>
+              <div>Due Date</div>
+              <div class="fw-semibold">8th Apr 2025</div>
+            </div>
+          </div>
+          <div class="d-flex mt-3 align-items-center">
+            <img src="https://i.pravatar.cc/30?img=9" class="avatar" />
+            <img src="https://i.pravatar.cc/30?img=10" class="avatar" />
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Social Media Campaign -->
+      <div class="col-md-4">
+        <div class="bg-light-subtle p-3 task-card border border-2 border-warning text-dark">
+          <div class="d-flex justify-content-between mb-2">
+            <span class="badge bg-secondary">Pending</span>
+            <span class="badge bg-warning text-dark">Medium Priority</span>
+          </div>
+          <h6 class="fw-bold">Social Media Campaign</h6>
+          <p class="text-muted small">Develop a content plan for the upcoming product launch. Create visuals with engaging...</p>
+          <p><strong>Task Done: 0 / 3</strong></p>
+          <div class="progress mb-3">
+            <div class="progress-bar bg-secondary" style="width: 0%"></div>
+          </div>
+          <div class="d-flex justify-content-between small text-muted">
+            <div>
+              <div>Start Date</div>
+              <div class="fw-semibold">16th Mar 2025</div>
+            </div>
+            <div>
+              <div>Due Date</div>
+              <div class="fw-semibold">12th Apr 2025</div>
+            </div>
+          </div>
+          <div class="d-flex mt-3 align-items-center">
+            <img src="https://i.pravatar.cc/30?img=11" class="avatar" />
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Develop Authentication System -->
+      <div class="col-md-4">
+        <div class="bg-white p-3 task-card border border-2 border-danger shadow">
+          <div class="d-flex justify-content-between mb-2">
+            <span class="badge bg-secondary">Pending</span>
+            <span class="badge bg-danger">High Priority</span>
+          </div>
+          <h6 class="fw-bold">Develop Authentication System</h6>
+          <p class="text-muted small">Implement secure authentication for the platform with login, signup, etc...</p>
+          <p><strong>Task Done: 0 / 5</strong></p>
+          <div class="progress mb-3">
+            <div class="progress-bar bg-secondary" style="width: 0%"></div>
+          </div>
+          <div class="d-flex justify-content-between small text-muted">
+            <div>
+              <div>Start Date</div>
+              <div class="fw-semibold">16th Mar 2025</div>
+            </div>
+            <div>
+              <div>Due Date</div>
+              <div class="fw-semibold">30th Apr 2025</div>
+            </div>
+          </div>
+          <div class="d-flex mt-3 align-items-center">
+            <img src="https://i.pravatar.cc/30?img=12" class="avatar" />
+            <img src="https://i.pravatar.cc/30?img=13" class="avatar" />
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

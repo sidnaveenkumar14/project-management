@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard - Task Manager</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      min-height: 100vh;
+      background-color: #f8f9fa;
+    }
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background-color: #fff;
+      border-right: 1px solid #dee2e6;
+    }
+    .sidebar .nav-link.active {
+      background-color: #e9f1ff;
+      border-left: 3px solid #0d6efd;
+      font-weight: bold;
+    }
+    .chart-container {
+      max-width: 250px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar p-3">
+    <div class="text-center mb-4">
+      <img src="https://i.pravatar.cc/100?img=12" class="rounded-circle mb-2" width="80" height="80" alt="Profile">
+      <span id="userRole" class="badge bg-primary">Role</span>
+      <h5 id="userName" class="mt-2 mb-0">User</h5>
+      <p id="userEmail" class="text-muted mb-0">email@example.com</p>
+    </div>
+    <ul class="nav flex-column">
+      <li class="nav-item"><a href="#" class="nav-link active">📊 Dashboard</a></li>
+      <li class="nav-item"><a href="manage.html" class="nav-link">🗂 Manage Projects</a></li>
+      <li class="nav-item"><a href="add new.html" class="nav-link">➕ Add New Task</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">👥 Team Overview</a></li>
+      <li class="nav-item"><a href="#" class="nav-link text-danger" onclick="logout()">🚪 Logout</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="flex-grow-1 p-4 overflow-auto">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      👋 Welcome back! Here’s a quick overview of your tasks.
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <h3 class="mb-3 display-6">Project Management Dashboard</h3>
+    <p class="lead">Track your team's productivity, manage deadlines, and collaborate effectively.</p>
+
+    <!-- Filter Button Group -->
+    <div class="btn-group mb-3" role="group">
+      <button type="button" class="btn btn-outline-primary">All</button>
+      <button type="button" class="btn btn-outline-warning">Pending</button>
+      <button type="button" class="btn btn-outline-info">In Progress</button>
+      <button type="button" class="btn btn-outline-success">Completed</button>
+    </div>
+
+    <!-- Task Summary -->
+    <div class="row mb-4">
+      <div class="col-md-3">
+        <div class="card text-center">
+          <div class="card-body">
+            <h6 class="text-muted">Total Tasks</h6>
+            <h4 class="text-primary">18 <span class="badge bg-secondary">+3 Today</span></h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card text-center">
+          <div class="card-body">
+            <h6 class="text-muted">Pending</h6>
+            <h4 class="text-warning">11</h4>
+            <div class="progress" role="progressbar" style="height: 6px;">
+              <div class="progress-bar bg-warning" style="width: 61%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card text-center">
+          <div class="card-body">
+            <h6 class="text-muted">In Progress</h6>
+            <h4 class="text-info">5</h4>
+            <div class="progress" style="height: 6px;">
+              <div class="progress-bar bg-info" style="width: 28%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card text-center">
+          <div class="card-body">
+            <h6 class="text-muted">Completed</h6>
+            <h4 class="text-success">2</h4>
+            <div class="progress" style="height: 6px;">
+              <div class="progress-bar bg-success" style="width: 11%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="card h-100">
+          <div class="card-header fw-bold">Task Distribution</div>
+          <div class="card-body chart-container">
+            <canvas id="taskChart" width="200" height="300"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card h-100">
+          <div class="card-header fw-bold">Task Priority Levels</div>
+          <div class="card-body">
+            <canvas id="priorityChart" height="200"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Tasks Table -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="mb-0">Recent Tasks</h5>
+          <button class="btn btn-outline-secondary btn-sm"><a href="manage.html">See All→</a></button>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-middle table-hover">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>Created On</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Develop Product Review System</td>
+                <td><span class="badge bg-secondary">Pending</span></td>
+                <td><span class="badge bg-success-subtle text-success">Low</span></td>
+                <td>17th Mar 2025</td>
+              </tr>
+              <tr>
+                <td>Build Feedback Form Module</td>
+                <td><span class="badge bg-secondary">Pending</span></td>
+                <td><span class="badge bg-danger-subtle text-danger">High</span></td>
+                <td>17th Mar 2025</td>
+              </tr>
+              <tr>
+                <td>Implement Notification System</td>
+                <td><span class="badge bg-secondary">Pending</span></td>
+                <td><span class="badge bg-success-subtle text-success">Low</span></td>
+                <td>17th Mar 2025</td>
+              </tr>
+              <tr>
+                <td>Migrate Database to MongoDB Atlas</td>
+                <td><span class="badge bg-success">Completed</span></td>
+                <td><span class="badge bg-warning-subtle text-warning">Medium</span></td>
+                <td>17th Mar 2025</td>
+              </tr>
+              <tr>
+                <td>Develop Expense Tracker Module</td>
+                <td><span class="badge bg-secondary">Pending</span></td>
+                <td><span class="badge bg-success-subtle text-success">Low</span></td>
+                <td>17th Mar 2025</td>
+              </tr>
+              <tr>
+                <td>Design Homepage Banner</td>
+                <td><span class="badge bg-secondary">Pending</span></td>
+                <td><span class="badge bg-warning-subtle text-warning">Medium</span></td>
+                <td>17th Mar 2025</td>
+              </tr>
+              <tr>
+                <td>Write Technical Documentation</td>
+                <td><span class="badge bg-secondary">Pending</span></td>
+                <td><span class="badge bg-warning-subtle text-warning">Medium</span></td>
+                <td>17th Mar 2025</td>
+              </tr>
+              <tr>
+                <td>Develop User Authentication System</td>
+                <td><span class="badge bg-info">In Progress</span></td>
+                <td><span class="badge bg-danger-subtle text-danger">High</span></td>
+                <td>17th Mar 2025</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accordion (FAQs) -->
+    <div class="accordion mb-4" id="faqAccordion">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq1">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+            📌 How do I assign a task?
+          </button>
+        </h2>
+        <div id="collapse1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Go to "Add New Task" and select the team member from the dropdown.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq2">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+            📌 Can I track task deadlines?
+          </button>
+        </h2>
+        <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Yes! Use the "Manage Projects" section to set and monitor deadlines.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+      <div id="loginToast" class="toast align-items-center text-bg-info border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body">
+            ✅ You are logged in as <span id="toastUserName">User</span>
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- JS Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      new Chart(document.getElementById('taskChart'), {
+        type: 'doughnut',
+        data: {
+          labels: ['Pending', 'In Progress', 'Completed'],
+          datasets: [{
+            label: 'Tasks',
+            data: [11, 5, 2],
+            backgroundColor: ['#8e44ad', '#00bcd4', '#2ecc71'],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: false,
+          plugins: {
+            legend: { position: 'bottom' }
+          }
+        }
+      });
+
+      new Chart(document.getElementById('priorityChart'), {
+        type: 'bar',
+        data: {
+          labels: ['Low', 'Medium', 'High'],
+          datasets: [{
+            label: 'Count',
+            data: [5, 6, 9],
+            backgroundColor: ['#2ecc71', '#f39c12', '#e74c3c']
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    </script>
+
+    <!-- JS Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Load LocalStorage User Info -->
+    <script>
+      const name = localStorage.getItem("userName") || "Guest";
+      const email = localStorage.getItem("userEmail") || "guest@example.com";
+      const role = localStorage.getItem("userRole") || "User";
+
+      document.getElementById("userName").textContent = name;
+      document.getElementById("userEmail").textContent = email;
+      document.getElementById("userRole").textContent = role;
+      document.getElementById("toastUserName").textContent = name;
+
+      // Show toast on load
+      const toastEl = document.getElementById('loginToast');
+      const toast = new bootstrap.Toast(toastEl);
+      toast.show();
+
+      function logout() {
+        localStorage.clear();
+        window.location.href = "index.html";
+      }
+    </script>
+  </div>
+</body>
+</html>
